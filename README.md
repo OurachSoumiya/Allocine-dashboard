@@ -1,5 +1,5 @@
 
-# Allocine top movies : Data Scraping to BI Dashboards
+# Allocine top movies : Web Scraping to BI Dashboards
 
 ## Description
 This project focuses on scraping data from Allocine's website, cleaning and transforming the data using SSIS and Talend, and finally building a comprehensive report using Power BI. The goal is to extract meaningful insights and trends from Allocine's movie data.
