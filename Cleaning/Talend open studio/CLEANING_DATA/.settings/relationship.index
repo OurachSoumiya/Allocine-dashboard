@@ -1,0 +1,52 @@
+[ {
+  "baseItem" : {
+    "id" : "_3vibwOEdEe6vS4k9pDZjWA",
+    "version" : "0.1",
+    "type" : "job"
+  },
+  "relatedItems" : [ ]
+}, {
+  "baseItem" : {
+    "id" : "_IKAl8OElEe6vS4k9pDZjWA",
+    "version" : "0.1",
+    "type" : "job"
+  },
+  "relatedItems" : [ ]
+}, {
+  "baseItem" : {
+    "id" : "_OYuKQOSvEe68dej7a0xNsg",
+    "version" : "0.1",
+    "type" : "job"
+  },
+  "relatedItems" : [ {
+    "id" : "_PRNIsN-REe6vr-1elhcxSQ",
+    "version" : "Latest",
+    "type" : "property"
+  }, {
+    "id" : "_PRNIsN-REe6vr-1elhcxSQ - AllocineMovies",
+    "version" : "Latest",
+    "type" : "schema"
+  } ]
+}, {
+  "baseItem" : {
+    "id" : "_QKNNUGZ8EeWm5YvsrIoYzQ",
+    "version" : "0.1",
+    "type" : "job"
+  },
+  "relatedItems" : [ ]
+}, {
+  "baseItem" : {
+    "id" : "_ksyWIN-1Ee6vsO1elhcxSQ",
+    "version" : "0.1",
+    "type" : "job"
+  },
+  "relatedItems" : [ {
+    "id" : "_2XcUoN-iEe6vsO1elhcxSQ",
+    "version" : "Latest",
+    "type" : "property"
+  }, {
+    "id" : "_2XcUoN-iEe6vsO1elhcxSQ - metadata",
+    "version" : "Latest",
+    "type" : "schema"
+  } ]
+} ]

@@ -1,0 +1,1387 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/5/2024 6:20:27 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-NR7S0KM"
+  DTS:CreatorName="DESKTOP-NR7S0KM\user"
+  DTS:DTSID="{28444F82-FFC4-4576-A1BE-28C7B6FFDEEC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="79"
+  DTS:VersionGUID="{64687925-F005-4F4F-BE90-B20F26DC8BCA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cleanData]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{7C15D53A-DF66-4826-BBD3-88C97E9D8893}"
+      DTS:ObjectName="cleanData">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\user\Desktop\mini-projet\data\CleanData.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[raw data]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{F0FD5645-E480-4557-93E0-5F778330D960}"
+      DTS:ObjectName="raw data">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1036"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="C:\Users\user\Desktop\mini-projet\data\movies_raw_data2.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0023_"
+              DTS:MaximumWidth="70"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="movieName"
+              DTS:DTSID="{76784493-24FA-4B28-A5B7-A1188CFF4224}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0023_"
+              DTS:MaximumWidth="55"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="director"
+              DTS:DTSID="{2CBA380D-7461-4A74-A3D3-82A1D570AD9F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0023_"
+              DTS:MaximumWidth="56"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DurationAndType"
+              DTS:DTSID="{FAE4224E-3499-47A7-A388-2B7EE05CCBD4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0023_"
+              DTS:MaximumWidth="254"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Actors"
+              DTS:DTSID="{C13F4E9D-7D71-44C5-9C7C-9357401579AE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0023_"
+              DTS:MaximumWidth="16"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Ratings"
+              DTS:DTSID="{F44146E3-A689-4E71-A337-27024A8DA1B6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002F__x002F_"
+              DTS:MaximumWidth="669"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Synopsis"
+              DTS:DTSID="{400FEC85-7B7B-498B-964A-608FED7011EC}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tâche de flux de données"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{93E7E69E-55F3-4A77-A214-1A2209666BEF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tâche de flux de données"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tâche de flux de données\Clean Data"
+              componentClassID="Microsoft.ExcelDestination"
+              contactInfo="Destination Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Destination Excel"
+              name="Clean Data"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">CleanDataSheet</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tâche de flux de données\Clean Data.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cleanData]"
+                  connectionManagerRefId="Package.ConnectionManagers[cleanData]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination Excel">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].Columns[PressRating]"
+                      cachedDataType="wstr"
+                      cachedLength="16"
+                      cachedName="PressRating"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[PressRating]"
+                      lineageId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[PressRating]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].Columns[SpectatorsRating]"
+                      cachedDataType="wstr"
+                      cachedLength="16"
+                      cachedName="SpectatorsRating"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[SpectatorsRating]"
+                      lineageId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[SpectatorsRating]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].Columns[nMovieName]"
+                      cachedDataType="wstr"
+                      cachedLength="70"
+                      cachedName="nMovieName"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[movieName]"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nMovieName]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].Columns[nDirector]"
+                      cachedDataType="wstr"
+                      cachedLength="55"
+                      cachedName="nDirector"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[director]"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nDirector]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].Columns[nActors]"
+                      cachedDataType="wstr"
+                      cachedLength="254"
+                      cachedName="nActors"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[Actors]"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nActors]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].Columns[nSynopsis]"
+                      cachedDataType="wstr"
+                      cachedLength="669"
+                      cachedName="nSynopsis"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[Synopsis]"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nSynopsis]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].Columns[nDuration]"
+                      cachedDataType="wstr"
+                      cachedLength="56"
+                      cachedName="nDuration"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[Duration]"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nDuration]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].Columns[nType]"
+                      cachedDataType="wstr"
+                      cachedLength="56"
+                      cachedName="nType"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[Type]"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nType]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[movieName]"
+                      dataType="nText"
+                      name="movieName" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[director]"
+                      dataType="nText"
+                      name="director" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[Actors]"
+                      dataType="nText"
+                      name="Actors" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[Synopsis]"
+                      dataType="nText"
+                      name="Synopsis" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[Duration]"
+                      dataType="nText"
+                      name="Duration" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[Type]"
+                      dataType="nText"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[PressRating]"
+                      dataType="nText"
+                      name="PressRating" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel].ExternalColumns[SpectatorsRating]"
+                      dataType="nText"
+                      name="SpectatorsRating" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tâche de flux de données\Clean Data.Outputs[Sortie d'erreur de destination Excel]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination Excel"
+                  synchronousInputId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Outputs[Sortie d'erreur de destination Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\Clean Data.Outputs[Sortie d'erreur de destination Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Clean Data.Outputs[Sortie d'erreur de destination Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\Clean Data.Outputs[Sortie d'erreur de destination Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tâche de flux de données\non-code to unicode"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="non-code to unicode"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tâche de flux de données\non-code to unicode.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Inputs[Entrée de conversion de données].Columns[movieName]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="70"
+                      cachedName="movieName"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[movieName]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Inputs[Entrée de conversion de données].Columns[director]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="55"
+                      cachedName="director"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[director]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Inputs[Entrée de conversion de données].Columns[DurationAndType]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="56"
+                      cachedName="DurationAndType"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[DurationAndType]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Inputs[Entrée de conversion de données].Columns[Actors]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="254"
+                      cachedName="Actors"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Actors]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Inputs[Entrée de conversion de données].Columns[Ratings]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="Ratings"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Ratings]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Inputs[Entrée de conversion de données].Columns[Synopsis]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="669"
+                      cachedName="Synopsis"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Synopsis]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\Tâche de flux de données\non-code to unicode.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CmovieName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="70"
+                      lineageId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CmovieName]"
+                      name="CmovieName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[movieName]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[Cdirector]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="55"
+                      lineageId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[Cdirector]"
+                      name="Cdirector"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[director]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CDurationAndType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="56"
+                      lineageId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CDurationAndType]"
+                      name="CDurationAndType"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[DurationAndType]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CActors]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="254"
+                      lineageId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CActors]"
+                      name="CActors"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Actors]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CRatings]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="16"
+                      lineageId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CRatings]"
+                      name="CRatings"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Ratings]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CSynopsis]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="669"
+                      lineageId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CSynopsis]"
+                      name="CSynopsis"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Synopsis]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\Tâche de flux de données\non-code to unicode.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tâche de flux de données\raw data from data scraping"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Source du fichier plat;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Source du fichier plat"
+              localeId="1036"
+              name="raw data from data scraping"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Spécifie si les colonnes dont la longueur est zéro sont traitées comme des valeurs NULL."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom d'une colonne de sortie contenant le nom du fichier. Si aucun nom n'est spécifié, aucune colonne de sortie contenant le nom du fichier ne sera générée."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tâche de flux de données\raw data from data scraping.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[raw data]"
+                  connectionManagerRefId="Package.ConnectionManagers[raw data]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat]"
+                  name="Sortie de source de fichier plat">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[movieName]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].ExternalColumns[movieName]"
+                      length="70"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[movieName]"
+                      name="movieName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[director]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].ExternalColumns[director]"
+                      length="55"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[director]"
+                      name="director"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[DurationAndType]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].ExternalColumns[DurationAndType]"
+                      length="56"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[DurationAndType]"
+                      name="DurationAndType"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Actors]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].ExternalColumns[Actors]"
+                      length="254"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Actors]"
+                      name="Actors"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Ratings]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].ExternalColumns[Ratings]"
+                      length="16"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Ratings]"
+                      name="Ratings"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Synopsis]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].ExternalColumns[Synopsis]"
+                      length="669"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Synopsis]"
+                      name="Synopsis"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].ExternalColumns[movieName]"
+                      codePage="65001"
+                      dataType="str"
+                      length="70"
+                      name="movieName" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].ExternalColumns[director]"
+                      codePage="65001"
+                      dataType="str"
+                      length="55"
+                      name="director" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].ExternalColumns[DurationAndType]"
+                      codePage="65001"
+                      dataType="str"
+                      length="56"
+                      name="DurationAndType" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].ExternalColumns[Actors]"
+                      codePage="65001"
+                      dataType="str"
+                      length="254"
+                      name="Actors" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].ExternalColumns[Ratings]"
+                      codePage="65001"
+                      dataType="str"
+                      length="16"
+                      name="Ratings" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].ExternalColumns[Synopsis]"
+                      codePage="65001"
+                      dataType="str"
+                      length="669"
+                      name="Synopsis" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie d'erreur de source de fichier plat]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source de fichier plat">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Colonne de sortie d'erreur de source de fichier plat"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                      name="Colonne de sortie d'erreur de source de fichier plat" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tâche de flux de données\removing additional caracters"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+              name="removing additional caracters"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tâche de flux de données\removing additional caracters.Inputs[Entrée de colonne dérivée]"
+                  description="Entrée de la transformation de colonnes dérivées"
+                  name="Entrée de colonne dérivée">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Inputs[Entrée de colonne dérivée].Columns[CmovieName]"
+                      cachedDataType="wstr"
+                      cachedLength="70"
+                      cachedName="CmovieName"
+                      lineageId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CmovieName]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Inputs[Entrée de colonne dérivée].Columns[Cdirector]"
+                      cachedDataType="wstr"
+                      cachedLength="55"
+                      cachedName="Cdirector"
+                      lineageId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[Cdirector]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Inputs[Entrée de colonne dérivée].Columns[CActors]"
+                      cachedDataType="wstr"
+                      cachedLength="254"
+                      cachedName="CActors"
+                      lineageId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CActors]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Inputs[Entrée de colonne dérivée].Columns[CSynopsis]"
+                      cachedDataType="wstr"
+                      cachedLength="669"
+                      cachedName="CSynopsis"
+                      lineageId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CSynopsis]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Inputs[Entrée de colonne dérivée].Columns[Duration]"
+                      cachedDataType="wstr"
+                      cachedLength="56"
+                      cachedName="Duration"
+                      lineageId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[Duration]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Inputs[Entrée de colonne dérivée].Columns[Type]"
+                      cachedDataType="wstr"
+                      cachedLength="56"
+                      cachedName="Type"
+                      lineageId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[Type]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée]"
+                  description="Sortie par défaut de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  name="Sortie de colonne dérivée"
+                  synchronousInputId="Package\Tâche de flux de données\removing additional caracters.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nDirector]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="55"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nDirector]"
+                      name="nDirector"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[REPLACE]([REPLACE](#{Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[Cdirector]},",\"De",""),"\",","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(REPLACE(Cdirector,",\"De",""),"\",","")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nActors]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="254"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nActors]"
+                      name="nActors"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[REPLACE]([REPLACE](#{Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CActors]},",\"Avec",""),"\",","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(REPLACE(CActors,",\"Avec",""),"\",","")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nSynopsis]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="669"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nSynopsis]"
+                      name="nSynopsis"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[REPLACE]([REPLACE](#{Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CSynopsis]},",\"",""),"\",","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(REPLACE(CSynopsis,",\"",""),"\",","")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nDuration]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="56"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nDuration]"
+                      name="nDuration"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[REPLACE](#{Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[Duration]},",\"","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(Duration,",\"","")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nMovieName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="70"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nMovieName]"
+                      name="nMovieName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[REPLACE](#{Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données].Columns[CmovieName]},",","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(CmovieName,",","")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="56"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée].Columns[nType]"
+                      name="nType"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[REPLACE](#{Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[Type]},"\",","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(Type,"\",","")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie d'erreur de colonne dérivée]"
+                  description="Sortie d'erreur de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de colonne dérivée"
+                  synchronousInputId="Package\Tâche de flux de données\removing additional caracters.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tâche de flux de données\spliting columns"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+              name="spliting columns"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tâche de flux de données\spliting columns.Inputs[Entrée de colonne dérivée]"
+                  description="Entrée de la transformation de colonnes dérivées"
+                  name="Entrée de colonne dérivée">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\spliting columns.Inputs[Entrée de colonne dérivée].Columns[DurationAndType]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="56"
+                      cachedName="DurationAndType"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[DurationAndType]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\spliting columns.Inputs[Entrée de colonne dérivée].Columns[Ratings]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="Ratings"
+                      lineageId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Ratings]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée]"
+                  description="Sortie par défaut de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  name="Sortie de colonne dérivée"
+                  synchronousInputId="Package\Tâche de flux de données\spliting columns.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[Duration]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="56"
+                      lineageId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[Duration]"
+                      name="Duration"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[TOKEN](#{Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[DurationAndType]},"|",1)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">TOKEN(DurationAndType,"|",1)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="56"
+                      lineageId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[Type]"
+                      name="Type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[TOKEN](#{Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[DurationAndType]},"|",2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">TOKEN(DurationAndType,"|",2)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[PressRating]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="16"
+                      lineageId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[PressRating]"
+                      name="PressRating"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[TOKEN](#{Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Ratings]},"\"",2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">TOKEN(Ratings,"\"",2)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[SpectatorsRating]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="16"
+                      lineageId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[SpectatorsRating]"
+                      name="SpectatorsRating"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[TOKEN](#{Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Ratings]},"\"",4)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">TOKEN(Ratings,"\"",4)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[blank]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="16"
+                      lineageId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée].Columns[blank]"
+                      name="blank"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[TOKEN](#{Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat].Columns[Ratings]},"\"",5)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">TOKEN(Ratings,"\"",5)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie d'erreur de colonne dérivée]"
+                  description="Sortie d'erreur de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de colonne dérivée"
+                  synchronousInputId="Package\Tâche de flux de données\spliting columns.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tâche de flux de données.Paths[Sortie de colonne dérivée]"
+              endId="Package\Tâche de flux de données\removing additional caracters.Inputs[Entrée de colonne dérivée]"
+              name="Sortie de colonne dérivée"
+              startId="Package\Tâche de flux de données\spliting columns.Outputs[Sortie de colonne dérivée]" />
+            <path
+              refId="Package\Tâche de flux de données.Paths[Sortie de colonne dérivée1]"
+              endId="Package\Tâche de flux de données\Clean Data.Inputs[Entrée de destination Excel]"
+              name="Sortie de colonne dérivée"
+              startId="Package\Tâche de flux de données\removing additional caracters.Outputs[Sortie de colonne dérivée]" />
+            <path
+              refId="Package\Tâche de flux de données.Paths[Sortie de conversion de données]"
+              endId="Package\Tâche de flux de données\spliting columns.Inputs[Entrée de colonne dérivée]"
+              name="Sortie de conversion de données"
+              startId="Package\Tâche de flux de données\non-code to unicode.Outputs[Sortie de conversion de données]" />
+            <path
+              refId="Package\Tâche de flux de données.Paths[Sortie de source de fichier plat]"
+              endId="Package\Tâche de flux de données\non-code to unicode.Inputs[Entrée de conversion de données]"
+              name="Sortie de source de fichier plat"
+              startId="Package\Tâche de flux de données\raw data from data scraping.Outputs[Sortie de source de fichier plat]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="197.6,41.6"
+          Id="Package\Tâche de flux de données"
+          TopLeft="175.499993244807,63.5666671281391" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tâche de flux de données">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172.8,41.6"
+          Id="Package\Tâche de flux de données\non-code to unicode"
+          TopLeft="125.499998807907,94.6333333264457" />
+        <NodeLayout
+          Size="208,48.8"
+          Id="Package\Tâche de flux de données\raw data from data scraping"
+          TopLeft="58.8333324061499,12.0999998140335" />
+        <NodeLayout
+          Size="214.4,41.6"
+          Id="Package\Tâche de flux de données\removing additional caracters"
+          TopLeft="229.666658951177,253.900001735687" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Tâche de flux de données\spliting columns"
+          TopLeft="182.999997715155,174.900000392596" />
+        <NodeLayout
+          Size="130.4,41.6"
+          Id="Package\Tâche de flux de données\Clean Data"
+          TopLeft="316.333329326577,329.900000909169" />
+        <EdgeLayout
+          Id="Package\Tâche de flux de données.Paths[Sortie de source de fichier plat]"
+          TopLeft="162.83333240615,60.8999998140335">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49.0666664017571,33.7333335124122"
+              Start="0,0"
+              End="49.0666664017571,26.2333335124122">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.8666667562061" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.8666667562061"
+                    Point2="0,16.8666667562061"
+                    Point3="4,16.8666667562061" />
+                  <mssgle:LineSegment
+                    End="45.0666664017571,16.8666667562061" />
+                  <mssgle:CubicBezierSegment
+                    Point1="45.0666664017571,16.8666667562061"
+                    Point2="49.0666664017571,16.8666667562061"
+                    Point3="49.0666664017571,20.8666667562061" />
+                  <mssgle:LineSegment
+                    End="49.0666664017571,26.2333335124122" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tâche de flux de données.Paths[Sortie de conversion de données]"
+          TopLeft="211.899998807907,136.233333326446">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47.499998907248,38.6666670661503"
+              Start="0,0"
+              End="47.499998907248,31.1666670661503">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.3333335330752" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.3333335330752"
+                    Point2="0,19.3333335330752"
+                    Point3="4,19.3333335330752" />
+                  <mssgle:LineSegment
+                    End="43.499998907248,19.3333335330752" />
+                  <mssgle:CubicBezierSegment
+                    Point1="43.499998907248,19.3333335330752"
+                    Point2="47.499998907248,19.3333335330752"
+                    Point3="47.499998907248,23.3333335330752" />
+                  <mssgle:LineSegment
+                    End="47.499998907248,31.1666670661503" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tâche de flux de données.Paths[Sortie de colonne dérivée1]"
+          TopLeft="336.866658951177,295.500001735687">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44.6666703754,34.399999173482"
+              Start="0,0"
+              End="44.6666703754,26.899999173482">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.199999586741" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.199999586741"
+                    Point2="0,17.199999586741"
+                    Point3="4,17.199999586741" />
+                  <mssgle:LineSegment
+                    End="40.6666703754,17.199999586741" />
+                  <mssgle:CubicBezierSegment
+                    Point1="40.6666703754,17.199999586741"
+                    Point2="44.6666703754,17.199999586741"
+                    Point3="44.6666703754,21.199999586741" />
+                  <mssgle:LineSegment
+                    End="44.6666703754,26.899999173482" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tâche de flux de données.Paths[Sortie de colonne dérivée]"
+          TopLeft="259.399997715155,216.500000392596">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77.466661236022,37.400001343091"
+              Start="0,0"
+              End="77.466661236022,29.900001343091">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.7000006715455" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.7000006715455"
+                    Point2="0,18.7000006715455"
+                    Point3="4,18.7000006715455" />
+                  <mssgle:LineSegment
+                    End="73.466661236022,18.7000006715455" />
+                  <mssgle:CubicBezierSegment
+                    Point1="73.466661236022,18.7000006715455"
+                    Point2="77.466661236022,18.7000006715455"
+                    Point3="77.466661236022,22.7000006715455" />
+                  <mssgle:LineSegment
+                    End="77.466661236022,29.900001343091" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tâche de flux de données\Clean Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
