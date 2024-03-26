@@ -18,7 +18,7 @@ To run this project locally, follow these steps:
 4. Open the project files in the respective tools.
 
 ## Web-Scraping
-The data scraping process involves extracting information such as movie titles, ratings, directors, and other relevant data from Allocine's website using BeautifulSoup library of python.(open jupyter file and change the value of the variable 'locationOfScrapedData' to choose the destination of scraped data)
+The data scraping process involves extracting information such as movie titles, ratings, directors, and other relevant data from Allocine's website using BeautifulSoup library of python.Modify the value of the variable 'locationOfScrapedData' in the Jupyter file to select the destination for scraped data.
 
 ## Data-Cleaning
 Data cleaning is performed using SSIS and Talend (same workflow)to preprocess the scraped data. This includes standardizing formats, and ensuring data quality.
